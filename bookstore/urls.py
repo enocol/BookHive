@@ -1,11 +1,7 @@
-
-
-import os
-from . views import index
 from bookstore import views
 from django.urls import path
 
 
-urlspartterns = [
+urlpatterns = [
     path("", views.index, name="index"),
 ]

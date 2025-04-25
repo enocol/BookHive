@@ -3,5 +3,5 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def index(resuest):
-    return HttpResponse("Hello, world. You're at the bookstore index.")
+def index(request):
+    return render(request, "bookstore/index.html")
