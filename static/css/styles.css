@@ -1,0 +1,26 @@
+.w25 {
+  position: absolute;
+  top: 0;
+  left: -300px;
+  width: 25%;
+  height: 100%;
+  z-index: 1000;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+  padding: 10px;
+  transition: left 0.3s ease;
+}
+.show {
+  left: 0;
+}
+
+.margin-left-20 {
+  margin-left: 50px;
+}
+
+.absolute {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

@@ -1,1 +1,4 @@
-console.log("Hello from scripts.js");
+addEventListener("DOMContentLoaded", function () {
+  const sidebar = document.getElementById("sidebar");
+  console.log("sidebar", sidebar);
+});
