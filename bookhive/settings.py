@@ -150,3 +150,6 @@ cloudinary.config(
 # Django Cloudinary storage settings
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+
+
+
