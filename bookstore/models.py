@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
+
 
 # Create your models here.
 
@@ -18,7 +20,7 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
     published_date = models.DateField()
-    cover_image = models.URLField(blank=True, null=True)
+    cover_image = CloudinaryField('image', null=True, blank=True) 
     borrower = models.ForeignKey(Borrower, on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

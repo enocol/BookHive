@@ -130,3 +130,21 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+# Cloudinary settings
+cloudinary.config(
+    cloud_name="dnbhzk0jf",
+    api_key="583398336283637",
+    api_secret="RogPWHtl_aOOn8tKRC6Z2Yo1Wok",
+    secure=True
+)
+
+# Django Cloudinary storage settings
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
