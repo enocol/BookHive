@@ -21,6 +21,7 @@ class Book(models.Model):
     cover_image = models.URLField(blank=True, null=True)
     borrower = models.ForeignKey(Borrower, on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
