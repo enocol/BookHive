@@ -2,12 +2,8 @@
 
 <div class="container">
   <div class="row">
-    <h1 class="col-6 text-center my-4">Welcome to Book Hive</h1>
-    <h2 class="col-6 text-center my-4">
-      Featured Books
-      <span class="badge bg-secondary">New</span>
-    </h2>
     <div class="col-md-6 text-center my-4">
+      <h2 class="text-center my-4">Welcome to Book Hive</h2>
       <img
         src="{% static 'images/hero.jpg' %}"
         alt="hero"
@@ -21,6 +17,7 @@
       />
     </div>
     <div class="col-md-6 text-center my-4">
+      <h2 class="text-center my-4">Featured Books</h2>
       <div
         id="carouselExampleAutoplaying"
         class="carousel slide"
@@ -84,5 +81,61 @@
     <li class="">Mystery</li>
     <li class="">Romance</li>
   </ul>
+  <div class="arrow">
+    <span class="menu">Menu</span>
+    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+  </div>
 </div>
+{% endblock %} {% block books %}
+<div class="container" id="books">
+  <div class="row justify-content-center">
+    <div class="col-md-12 text-center my-4">
+      <h2 class="text-center my-4">Books</h2>
+    </div>
+    <div class="row justify-content-center">
+      {% for book in page_obj %}
+      <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+        <a href="">
+          <div class="card border-0">
+            <img
+              src="{{ book.cover_image }}"
+              class="card-img-top book-cover w-100"
+              alt="{{ book.title }}"
+              style="
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                border-radius: 5px;
+              "
+            />
+            <div class="card-body title min-height-400px">
+              <p class="title">{{ book.title }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Pagination Controls -->
+<div class="container">
+  <div class="pagination justify-content-center my-4">
+    {% if page_obj.has_previous %}
+    <a href="?page=1#books">&laquo; first</a>
+    <a href="?page={{ page_obj.previous_page_number }}#books">previous</a>
+    {% endif %}
+
+    <span class="current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </span>
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}#books">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}#books">last &raquo;</a>
+    {% endif %}
+  </div>
+</div>
+
 {% endblock %}

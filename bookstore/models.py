@@ -11,7 +11,7 @@ class Borrower(models.Model):
     phone_number = models.CharField(max_length=15, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return self.user.username
 
 
 class Book(models.Model):
