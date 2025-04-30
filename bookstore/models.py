@@ -17,12 +17,20 @@ class Borrower(models.Model):
 
 
 class Book(models.Model):
+    choices = (
+        ('Fiction', 'Fiction'),
+        ('Science', 'Science'),
+        ('History', 'History'),
+        ('Romance', 'Romance'),
+        
+    )
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
     published_date = models.DateField()
     cover_image = CloudinaryField('image', null=True, blank=True) 
     borrower = models.ForeignKey(Borrower, on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
+    category = models.CharField(choices=choices, max_length=50, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

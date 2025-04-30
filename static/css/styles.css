@@ -120,3 +120,17 @@ a {
 
   gap: 20px;
 }
+
+body {
+  background-color: #fef6e4;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+.footer-hidden {
+  transform: translateY(100%);
+}
