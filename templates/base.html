@@ -27,9 +27,9 @@
   </head>
 
   <body>
-    <header class="container">
+    <header class="container-fluid">
       <nav class="navbar bg-body-tertiary">
-        <a class="navbar-brand margin-left-20">BookStore</a>
+        <a class="navbar-brand margin-left-20 nav-heading">BookStore</a>
         <form class="d-flex" role="search">
           <input
             class="form-control me-2"
@@ -42,8 +42,10 @@
       </nav>
     </header>
 
-    <main>{% block content %} {% endblock %}</main>
-    {% block sidebar%} {% endblock %} {% block books %} {% endblock %}
+    <main>
+      {% block content %} {% endblock %} {% block sidebar%} {% endblock %}
+    </main>
+    <section class="margin-buttom-20">{% block books %} {% endblock %}</section>
 
     <footer class="container-fluid" id="page-footer">
       <div class="row">

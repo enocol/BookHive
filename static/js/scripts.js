@@ -16,6 +16,7 @@ addEventListener("DOMContentLoaded", function () {
 
 let lastScrollTop = 0;
 const footer = document.getElementById("page-footer");
+let scrollTimeout = null;
 
 document.addEventListener(
   "scroll",
@@ -23,15 +24,20 @@ document.addEventListener(
     const currentScroll =
       document.pageYOffset || document.documentElement.scrollTop;
 
-    if (currentScroll > lastScrollTop) {
-      // Scrolling down
-      footer.classList.add("footer-hidden");
-    } else {
-      // Scrolling up
-      footer.classList.remove("footer-hidden");
+    // Always hide the footer on scroll
+    footer.classList.add("footer-hidden");
+
+    // Clear the previous timeout
+    if (scrollTimeout !== null) {
+      clearTimeout(scrollTimeout);
     }
 
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+    // Set timeout to show footer after 3 seconds of no scrolling
+    scrollTimeout = setTimeout(() => {
+      footer.classList.remove("footer-hidden");
+    }, 2000);
+
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
   },
   false
 );

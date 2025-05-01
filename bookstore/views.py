@@ -7,10 +7,12 @@ from django.core.paginator import Paginator
 
 def index(request):
     books = Book.objects.all()
+    featured_books = Book.objects.filter(featured=True)
     paginator = Paginator(books, 6)  # 6 items per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
         'page_obj': page_obj,
+        'featured_books': featured_books,
     }
     return render(request, "bookstore/index.html", context)

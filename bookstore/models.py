@@ -30,6 +30,7 @@ class Book(models.Model):
     cover_image = CloudinaryField('image', null=True, blank=True) 
     borrower = models.ForeignKey(Borrower, on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
+    featured = models.BooleanField(default=False)
     category = models.CharField(choices=choices, max_length=50, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
