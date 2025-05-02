@@ -16,3 +16,10 @@ def index(request):
         'featured_books': featured_books,
     }
     return render(request, "bookstore/index.html", context)
+
+def book_detail(request, book_id):
+    book = Book.objects.get(id=book_id)
+    context = {
+        'book': book,
+    }
+    return render(request, "bookstore/book_detail.html", context)

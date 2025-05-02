@@ -43,16 +43,31 @@
     </header>
 
     <main>
-      {% block content %} {% endblock %} {% block sidebar%} {% endblock %}
+      {% block content %} {% endblock %}
+
+      <!-- side bar -->
+      <div class="side-menu" id="sidebar">
+        <h2 class="sidebar-heading">Categories</h2>
+        <ul class="categories">
+          <li class="btn red-background">Fiction</li>
+          <li class="btn dark-background">Science</li>
+          <li class="btn red-background">History</li>
+          <li class="btn dark-background">Romance</li>
+        </ul>
+        <div class="arrow">
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </div>
+      </div>
     </main>
     <section class="margin-buttom-20">{% block books %} {% endblock %}</section>
 
     <footer class="container-fluid" id="page-footer">
       <div class="row">
-        <div class="col-12 bg-light text-center text-lg-start">
-          <div class="text-center p-3" style="background-color: #f1f1f1">
-            © 2023 Book Hive
-          </div>
+        <div class="col-6 text-center text-lg-start">
+          <div class="text-center p-3">© 2023 Book Hive</div>
+        </div>
+        <div class="col-6 text-center text-lg-start">
+          <div class="text-center p-3">All rights reserved</div>
         </div>
       </div>
     </footer>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% load static %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 text-center my-4">
+      <h2 class="text-center my-4">Book Details</h2>
+      <img
+        src="{{ book.cover_image.url }}"
+        alt="{{ book.title }}"
+        class="card-img-top book-cover"
+      />
+    </div>
+    <div class="col-md-6 text-center my-4">
+      <h2 class="text-center my-4">{{ book.title }}</h2>
+      <p>{{ book.description }}</p>
+      <p><strong>Author:</strong> {{ book.author }}</p>
+      <p><strong>Price:</strong> ${{ book.price }}</p>
+      <a href="" class="btn btn-primary">Add to Cart</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
