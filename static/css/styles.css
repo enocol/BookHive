@@ -91,7 +91,7 @@
 }
 
 a {
-  color: red;
+  color: #000000;
   font-family: "Tagesschrift", system-ui;
   text-decoration: none;
 }
@@ -155,14 +155,12 @@ footer {
 }
 
 .dark-background {
-  background-color: #000000;
   color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .red-background {
-  background-color: #ff0000;
-  color: #ffffff;
+  color: #000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -182,4 +180,8 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.card {
+  border: none;
 }

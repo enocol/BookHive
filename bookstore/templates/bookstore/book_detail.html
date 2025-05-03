@@ -1,8 +1,17 @@
 {% extends "base.html" %}{% load static %} {% block content %}
 <div class="container">
+  <button
+    class="btn btn-primary"
+    onclick="window.history.back();"
+    style="margin-bottom: 20px"
+  >
+    Back to Books
+  </button>
   <div class="row">
     <div class="col-md-6 text-center my-4">
-      <h2 class="text-center my-4">Book Details</h2>
+      <div class="col-md-6">
+        <h2 class="text-center my-4">Book Details</h2>
+      </div>
       <img
         src="{{ book.cover_image.url }}"
         alt="{{ book.title }}"

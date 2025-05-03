@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% load static %} {% block content %}
-
+<!-- Hero Section -->
 <div class="container">
   <div class="row">
     <div class="col-md-6 text-center my-4">
@@ -63,6 +63,7 @@
     </div>
   </div>
 </div>
+
 {% endblock %} {% block books %}
 <div class="container" id="books">
   <div class="row justify-content-center">
@@ -73,7 +74,7 @@
       {% for book in page_obj %}
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
         <a href="{% url 'book_detail' book.id %}">
-          <div class="card border-10 shadow-sm">
+          <div class="card">
             <img
               src="{{ book.cover_image.url }}"
               class="card-img-top book-cover"

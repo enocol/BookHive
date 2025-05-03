@@ -17,9 +17,22 @@ def index(request):
     }
     return render(request, "bookstore/index.html", context)
 
+
+
 def book_detail(request, book_id):
     book = Book.objects.get(id=book_id)
     context = {
         'book': book,
     }
     return render(request, "bookstore/book_detail.html", context)
+
+def category(request, category):
+    category = Book.objects.filter(category=category)
+    featured_books = Book.objects.filter(featured=True)
+   
+    context = {
+        
+        'categories': category,
+        'featured_books': featured_books,
+    }
+    return render(request, "bookstore/category.html", context)

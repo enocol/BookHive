@@ -49,10 +49,21 @@
       <div class="side-menu" id="sidebar">
         <h2 class="sidebar-heading">Categories</h2>
         <ul class="categories">
-          <li class="btn red-background">Fiction</li>
-          <li class="btn dark-background">Science</li>
-          <li class="btn red-background">History</li>
-          <li class="btn dark-background">Romance</li>
+          <li class="btn dark-background">
+            <a href="{% url 'index' %}">All</a>
+          </li>
+          <li class="btn dark-background">
+            <a href="{% url 'book_category' 'Fiction' %}">Fiction</a>
+          </li>
+          <li class="btn red-background">
+            <a href="{% url 'book_category' 'Science' %}">Science</a>
+          </li>
+          <li class="btn dark-background">
+            <a href="{% url 'book_category' 'History' %}">History</a>
+          </li>
+          <li class="btn red-background">
+            <a href="{% url 'book_category' 'Romance' %}">Romance</a>
+          </li>
         </ul>
         <div class="arrow">
           <i class="fa fa-arrow-right" aria-hidden="true"></i>
