@@ -4,11 +4,13 @@ addEventListener("DOMContentLoaded", function () {
 
   sidebar.addEventListener("mouseenter", function () {
     sidebar.classList.add("show");
-    arrow.style.transform = "rotate(180deg)";
-    arrow.style.transition = "transform 0.3s ease"; // smooth animation
+    arrow.style.display = "none"; // Hide the arrow when sidebar is shown
+    // arrow.style.transform = "rotate(180deg)";
+    // arrow.style.transition = "transform 0.3s ease"; // smooth animation
   });
   sidebar.addEventListener("mouseleave", function () {
     sidebar.classList.remove("show");
+    arrow.style.display = "block"; // Show the arrow when sidebar is hidden
     arrow.style.transform = "rotate(0deg)";
     arrow.style.transition = "transform 0.3s ease"; // smooth animation
   });

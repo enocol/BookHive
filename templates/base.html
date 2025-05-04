@@ -8,8 +8,9 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8e+z5l5e5c5e5c5e5c5e5c5e5c5e5c5e5c5"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
       crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,18 +28,21 @@
   </head>
 
   <body>
-    <header class="container-fluid">
-      <nav class="navbar bg-body-tertiary">
-        <a
-          href="{% url 'index' %}"
-          class="navbar-brand margin-left-20 nav-heading"
-          >BookStore</a
-        >
-        <form class="d-flex" role="search">
+    <header class="container-fluid static-header">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div>
+          <a
+            href="{% url 'index' %}"
+            class="navbar-brand margin-left-20 nav-heading"
+            >BookStore</a
+          >
+          <a href="{% url 'index' %}">Home</a>
+        </div>
+        <form class="d-flex ms-auto p-2 bd-highlight" role="search">
           <input
             class="form-control me-2"
             type="search"
-            placeholder="Search"
+            placeholder="Search by title"
             aria-label="Search"
             name="search"
             value="{{ request.GET.search|default:'' }}"
@@ -53,7 +57,6 @@
 
       <!-- side bar -->
       <div class="side-menu" id="sidebar">
-        <h2 class="sidebar-heading">Categories</h2>
         <ul class="categories">
           <li class="btn dark-background">
             <a href="{% url 'index' %}">All</a>
@@ -72,7 +75,7 @@
           </li>
         </ul>
         <div class="arrow">
-          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          <i class="fa-solid fa-chevron-right"></i>
         </div>
       </div>
     </main>

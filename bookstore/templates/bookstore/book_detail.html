@@ -1,9 +1,9 @@
 {% extends "base.html" %}{% load static %} {% block content %}
 <div class="container">
   <button
-    class="btn btn-primary"
+    class="btn btn-primary col-md-2"
     onclick="window.history.back();"
-    style="margin-bottom: 20px"
+    style="margin-top: 100px"
   >
     Back to Books
   </button>
@@ -12,18 +12,20 @@
       <div class="col-md-6">
         <h2 class="text-center my-4">Book Details</h2>
       </div>
-      <img
-        src="{{ book.cover_image.url }}"
-        alt="{{ book.title }}"
-        class="card-img-top book-cover"
-      />
+      <div class="image-container">
+        <img
+          src="{{ book.cover_image.url }}"
+          alt="{{ book.title }}"
+          class="book-cover"
+        />
+      </div>
     </div>
     <div class="col-md-6 text-center my-4">
       <h2 class="text-center my-4">{{ book.title }}</h2>
       <p>{{ book.description }}</p>
       <p><strong>Author:</strong> {{ book.author }}</p>
-      <p><strong>Price:</strong> ${{ book.price }}</p>
-      <a href="" class="btn btn-primary">Add to Cart</a>
+      <p><strong>Category:</strong> {{ book.category }}</p>
+      <a href="" class="btn btn-primary">Borrow this book</a>
     </div>
   </div>
 </div>
