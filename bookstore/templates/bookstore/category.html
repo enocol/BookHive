@@ -11,11 +11,13 @@
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
         <a href="{% url 'book_detail' book.id %}">
           <div class="card border-10 shadow-sm">
-            <img
-              src="{{ book.cover_image.url }}"
-              class="card-img-top book-cover"
-              alt="{{ book.title }}"
-            />
+            <div class="image-container">
+              <img
+                src="{{ book.cover_image.url }}"
+                class="book-cover"
+                alt="{{ book.title }}"
+              />
+            </div>
             <div class="card-body min-height-400px">
               <p class="title">{{ book.title }}</p>
               <p class="category">{{ book.category }}</p>
