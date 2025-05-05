@@ -238,7 +238,7 @@ footer {
 }
 
 .carousel-image {
-  width: 80%;
+  width: 50%;
   height: 300px;
 
   border-radius: 10px;
@@ -309,4 +309,18 @@ footer {
   }
 }
 @media (max-width: 576px) {
+  .side-menu {
+    width: 100%;
+    left: 0;
+    top: 90px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: scroll;
+  }
+
+  .arrow {
+    display: none;
+  }
 }
