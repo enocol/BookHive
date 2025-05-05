@@ -36,7 +36,7 @@
             <div class="image-container">
               <img
                 src="{{ book.cover_image.url }}"
-                class="book-cover"
+                class="carousel-image"
                 alt="{{ book.title }}"
               />
             </div>
@@ -71,11 +71,12 @@
 <div class="container" id="books">
   <div class="row justify-content-center">
     <div class="col-md-12 text-center my-4">
-      <h2 class="text-center my-4">Books</h2>
+      <h2 class="text-center">Explore Our Collection</h2>
+      <p class="text-center">Discover your next favorite book!</p>
     </div>
     <div class="row justify-content-center p-0">
       {% for book in page_obj %}
-      <div class="col-sm-12 col-md-6 col-lg-4">
+      <div class="col-sm-12 col-md-6 col-lg-2 mb-4">
         <a href="{% url 'book_detail' book.id %}">
           <div class="card">
             <div class="image-container">
@@ -86,8 +87,14 @@
               />
             </div>
             <div class="card-body min-height-400px">
-              <p class="title">{{ book.title }}</p>
-              <p class="category">{{ book.category }}</p>
+              <div>
+                <!-- <p class="title">{{ book.title }}</p> -->
+                <p class="author">{{ book.author }}</p>
+              </div>
+              <div class="genre-container">
+                <span>Genre: </span>
+                <p class="category">{{ book.category }}</p>
+              </div>
             </div>
           </div>
         </a>

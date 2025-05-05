@@ -1,18 +1,10 @@
 {% extends "base.html" %}{% load static %} {% block content %}
-<div class="container">
-  <button
-    class="btn btn-primary col-md-2"
-    onclick="window.history.back();"
-    style="margin-top: 100px"
+<div class="container" style="margin-top: 100px">
+  <div
+    class="row justify-content-md-center justify-content-lg-end align-items-end"
   >
-    Back to Books
-  </button>
-  <div class="row">
-    <div class="col-md-6 text-center my-4">
-      <div class="col-md-6">
-        <h2 class="text-center my-4">Book Details</h2>
-      </div>
-      <div class="image-container">
+    <div class="col-md-12 col-lg-6 text-center my-4 static-container">
+      <div class="details-image-container">
         <img
           src="{{ book.cover_image.url }}"
           alt="{{ book.title }}"
@@ -20,12 +12,83 @@
         />
       </div>
     </div>
-    <div class="col-md-6 text-center my-4">
-      <h2 class="text-center my-4">{{ book.title }}</h2>
-      <p>{{ book.description }}</p>
-      <p><strong>Author:</strong> {{ book.author }}</p>
-      <p><strong>Category:</strong> {{ book.category }}</p>
-      <a href="" class="btn btn-primary">Borrow this book</a>
+    <div class="col-md-12 col-lg-6">
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              About the Book
+            </button>
+          </h2>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <p>{{ book.description }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+            >
+              Genre and Published Date
+            </button>
+          </h2>
+          <div
+            id="collapseTwo"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingTwo"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <p>Genre: {{ book.category }}</p>
+              <p>Published Date: {{ book.published_date }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseThree"
+              aria-expanded="false"
+              aria-controls="collapseThree"
+            >
+              Copies Available and Number of Pages
+            </button>
+          </h2>
+          <div
+            id="collapseThree"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingThree"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <p>Copies Available: {{ book.number_of_copies }}</p>
+              <p>Number of Pages: {{ book.number_of_pages }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

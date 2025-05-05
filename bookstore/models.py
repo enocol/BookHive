@@ -32,10 +32,15 @@ class Book(models.Model):
     description = models.TextField(blank=True, null=True)
     featured = models.BooleanField(default=False)
     category = models.CharField(choices=choices, max_length=50, blank=True, null=True)
+    number_of_pages = models.IntegerField(default=50)
+    number_of_copies = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ordering = ['title']
     
 
 

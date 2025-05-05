@@ -63,3 +63,16 @@ categoryItems.forEach((item) => {
     item.style.color = "black";
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const bookTitle = document.querySelectorAll(".title");
+
+  bookTitle.forEach((title) => {
+    const text = title.textContent.trim();
+    const capitalized = text
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+    title.textContent = capitalized;
+  });
+});

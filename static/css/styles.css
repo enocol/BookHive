@@ -58,11 +58,27 @@
 }
 
 .min-height-400px {
-  min-height: 70px;
-  line-height: 1;
+  min-height: 100px;
   padding: 5;
 }
 
+.post-description {
+  font-size: 20px;
+  color: #555;
+  margin: 10px 0;
+  width: 100%;
+  font-family: "PT Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #dee2e6;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
 .pagination {
   text-align: center;
   margin-top: 20px;
@@ -83,12 +99,11 @@
 
 .title {
   font-size: 14px;
-  color: #000000;
+  font-weight: 600;
   text-decoration: none;
   margin-bottom: 5px;
   font-family: "PT Sans", sans-serif;
   font-style: normal;
-  font-weight: 900;
 }
 
 a {
@@ -129,6 +144,12 @@ a {
 
 .category {
   margin: 0;
+}
+
+.genre-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 footer {
@@ -187,12 +208,20 @@ footer {
 
 .image-container {
   width: 100%; /* or any fixed width */
-  height: 400px; /* or any fixed height */
+  height: auto; /* or any fixed height */
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f0f0f0; /* optional for padding contrast */
+}
+
+.details-image-container {
+  width: 50%;
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .book-cover {
@@ -203,21 +232,49 @@ footer {
   max-width: 100%;
   max-height: 100%;
   width: 100%;
+  margin: 10px;
   height: auto;
   display: block;
 }
 
-hr {
-  display: none;
+.carousel-image {
+  width: 80%;
+  height: 300px;
+
+  border-radius: 10px;
+}
+
+.static-container {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  height: 450px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {
-  hr {
-    display: none;
-  }
-
   .index-header {
     margin-top: 110px;
+  }
+
+  .image-container {
+    width: 100%;
+    height: 450px;
+  }
+
+  .static-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .book-cover {
+    width: 80%;
+    height: auto;
   }
 
   .side-menu {
@@ -234,9 +291,17 @@ hr {
     align-items: center;
     flex-direction: row;
     justify-content: space-around;
-
     margin: 0;
     z-index: 1000;
+  }
+
+  .details-image-container {
+    width: 80%;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .arrow {
@@ -244,7 +309,4 @@ hr {
   }
 }
 @media (max-width: 576px) {
-  hr {
-    display: block;
-  }
 }
