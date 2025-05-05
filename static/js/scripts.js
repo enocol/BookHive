@@ -5,8 +5,6 @@ addEventListener("DOMContentLoaded", function () {
   sidebar.addEventListener("mouseenter", function () {
     sidebar.classList.add("show");
     arrow.style.display = "none"; // Hide the arrow when sidebar is shown
-    // arrow.style.transform = "rotate(180deg)";
-    // arrow.style.transition = "transform 0.3s ease"; // smooth animation
   });
   sidebar.addEventListener("mouseleave", function () {
     sidebar.classList.remove("show");
@@ -43,3 +41,25 @@ document.addEventListener(
   },
   false
 );
+
+const categoryItems = document.querySelectorAll(".category");
+
+categoryItems.forEach((item) => {
+  const text = item.textContent.trim(); // Get and clean the text inside the element
+
+  if (text === "Romance") {
+    item.style.color = "red";
+  } else if (text === "History") {
+    item.style.color = "blue";
+  } else if (text === "Science") {
+    item.style.color = "green";
+  } else if (text === "Fiction") {
+    item.style.color = "purple";
+  } else if (text === "Comedy") {
+    item.style.color = "yellow";
+  } else if (text === "Drama") {
+    item.style.color = "purple";
+  } else {
+    item.style.color = "black";
+  }
+});

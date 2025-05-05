@@ -4,6 +4,10 @@
   list-style: none;
 }
 
+.index-header {
+  margin-top: 100px;
+}
+
 .static-header {
   position: fixed;
   top: 0;
@@ -56,6 +60,7 @@
 .min-height-400px {
   min-height: 70px;
   line-height: 1;
+  padding: 5;
 }
 
 .pagination {
@@ -80,7 +85,7 @@
   font-size: 14px;
   color: #000000;
   text-decoration: none;
-  margin: 0;
+  margin-bottom: 5px;
   font-family: "PT Sans", sans-serif;
   font-style: normal;
   font-weight: 900;
@@ -118,13 +123,12 @@ a {
   align-items: flex-start;
   justify-content: center;
   margin: 0 auto;
-
   gap: 20px;
   margin-top: 100px;
 }
 
 .category {
-  margin-top: 10px;
+  margin: 0;
 }
 
 footer {
@@ -196,10 +200,51 @@ footer {
   border-top-left-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
-
   max-width: 100%;
   max-height: 100%;
   width: 100%;
   height: auto;
   display: block;
+}
+
+hr {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  hr {
+    display: none;
+  }
+
+  .index-header {
+    margin-top: 110px;
+  }
+
+  .side-menu {
+    width: 100%;
+    left: 0;
+    top: 60px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .categories {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+
+    margin: 0;
+    z-index: 1000;
+  }
+
+  .arrow {
+    display: none;
+  }
+}
+@media (max-width: 576px) {
+  hr {
+    display: block;
+  }
 }
