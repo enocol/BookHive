@@ -324,3 +324,9 @@ footer {
     display: none;
   }
 }
+
+@media (max-width: 378px) {
+  .arrow {
+    display: none;
+  }
+}
