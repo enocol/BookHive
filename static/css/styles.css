@@ -2,6 +2,9 @@
 
 * {
   list-style: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .index-header {
@@ -39,10 +42,6 @@
   left: 0;
 }
 
-.margin-left-20 {
-  margin-left: 50px;
-}
-
 .absolute {
   position: fixed;
   bottom: 0;
@@ -54,13 +53,14 @@
   width: 100%;
 }
 
-.book-cover:hover {
-  transform: scale(1.05);
+.book-cover {
+  width: 100%;
+  height: 400px;
+  max-width: 100%;
 }
 
-.min-height-400px {
-  min-height: 100px;
-  padding: 5;
+.book-cover:hover {
+  transform: scale(1.05);
 }
 
 .post-description {
@@ -80,17 +80,11 @@
   border: 2px solid #dee2e6;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-.pagination {
-  text-align: center;
-  margin-top: 20px;
-}
 
-.pagination a {
-  margin: 0 5px;
-  text-decoration: none;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.pagination {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .pagination .current {
@@ -98,13 +92,41 @@
   font-weight: bold;
 }
 
-.title {
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  margin-bottom: 5px;
-  font-family: "PT Sans", sans-serif;
-  font-style: normal;
+.pagination .first-button {
+  width: 40%;
+  border-radius: 20px;
+  text-align: center;
+  margin: 0 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pagination .previous-button {
+  width: 40%;
+  border-radius: 20px;
+  text-align: center;
+  margin: 0 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pagination .next-button {
+  width: 40%;
+  border-radius: 20px;
+  text-align: center;
+  margin: 0 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.pagination .last-button {
+  width: 40%;
+  border-radius: 20px;
+  text-align: center;
+  margin: 0 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pagination a:hover {
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
 }
 
 a {
@@ -127,12 +149,6 @@ a {
   color: red;
 }
 
-.pagination a:hover {
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-}
-
 .categories {
   display: flex;
   flex-direction: column;
@@ -143,14 +159,9 @@ a {
   margin-top: 100px;
 }
 
-.category {
-  margin: 0;
-}
-
-.genre-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+section {
+  margin-bottom: 100px;
+  background-color: #f8f9fa;
 }
 
 footer {
@@ -161,15 +172,6 @@ footer {
 }
 .footer-hidden {
   transform: translateY(100%);
-}
-
-.w-200 {
-  width: 100%;
-  justify-content: center;
-}
-
-.margin-buttom-20 {
-  margin-bottom: 100px;
 }
 
 #page-footer {
@@ -197,52 +199,48 @@ footer {
   margin: 5px 0;
 }
 
-.d-flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .card {
   border: none;
-}
-
-.image-container {
-  width: 100%; /* or any fixed width */
-  height: auto; /* or any fixed height */
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.details-image-container {
-  width: 50%;
-  height: 400px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.book-cover {
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-  max-width: 100%;
-  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-body {
   width: 100%;
-  margin: 10px;
-  height: auto;
-  display: block;
+  padding: 0;
+}
+
+.card-body div {
+  margin: 5px 0;
+  padding: 10px;
+}
+
+.card-body h3 {
+  font-size: 20px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-body h4 {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.card-body h3,
+.card-body h4 {
+  margin: 0;
 }
 
 .carousel-image {
-  width: 50%;
-  height: 300px;
-
-  border-radius: 10px;
+  width: 100%;
+  height: 370px;
+  max-width: 100%;
 }
 
 .static-container {
@@ -271,11 +269,6 @@ footer {
   .static-container {
     position: relative;
     width: 100%;
-  }
-
-  .book-cover {
-    width: 80%;
-    height: auto;
   }
 
   .side-menu {
