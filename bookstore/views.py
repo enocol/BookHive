@@ -13,7 +13,7 @@ def index(request):
     # Get featured books
     featured_books = Book.objects.filter(featured=True)
     # Paginate the books
-    paginator = Paginator(books, 6)  # 6 items per page
+    paginator = Paginator(books, 8)  # 6 items per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -26,8 +26,10 @@ def index(request):
 
 def book_detail(request, book_id):
     book = Book.objects.get(id=book_id)
+    similar_books = Book.objects.filter(category=book.category).exclude(id=book_id)[:4]  # Get 4 similar books
     context = {
         'book': book,
+        'similar_books': similar_books,
     }
     return render(request, "bookstore/book_detail.html", context)
 
