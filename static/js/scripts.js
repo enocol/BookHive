@@ -14,34 +14,6 @@ addEventListener("DOMContentLoaded", function () {
   });
 });
 
-let lastScrollTop = 0;
-const footer = document.getElementById("page-footer");
-let scrollTimeout = null;
-
-document.addEventListener(
-  "scroll",
-  function () {
-    const currentScroll =
-      document.pageYOffset || document.documentElement.scrollTop;
-
-    // Always hide the footer on scroll
-    footer.classList.add("footer-hidden");
-
-    // Clear the previous timeout
-    if (scrollTimeout !== null) {
-      clearTimeout(scrollTimeout);
-    }
-
-    // Set timeout to show footer after 3 seconds of no scrolling
-    scrollTimeout = setTimeout(() => {
-      footer.classList.remove("footer-hidden");
-    }, 2000);
-
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-  },
-  false
-);
-
 const categoryItems = document.querySelectorAll(".category");
 
 categoryItems.forEach((item) => {
