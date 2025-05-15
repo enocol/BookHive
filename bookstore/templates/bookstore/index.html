@@ -2,7 +2,23 @@
 <!-- Hero Section -->
 
 <div class="container" id="books">
-  <div class="row">
+  <div class="row m-2">
+    <form
+      class="col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center"
+      method="GET"
+      action="{% url 'search' %}"
+    >
+      <input
+        class="form-control me-2"
+        type="search"
+        name="search"
+        placeholder="Search for books..."
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+  <div class="row p-2">
     <div class="col-sm-12">
       <h2>Featured List</h2>
       <p>Discover the latest and greatest in our collection.</p>
@@ -37,7 +53,7 @@
     </div>
     <div class="row g-2 books-container">
       {% for book in page_obj %}
-      <div class="col-6 col-sm-6 col-md-4 col-lg-2">
+      <div class="col-6 col-sm-6 col-md-4 col-lg-2 collections-container">
         <a href="{% url 'book_detail' book.id %}" class="text-decoration-none">
           <div class="card mx-1 border-0">
             <img
