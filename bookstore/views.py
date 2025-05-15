@@ -19,6 +19,7 @@ def index(request):
     context = {
         'page_obj': page_obj,
         'featured_books': featured_books,
+        'query': query,
     }
     return render(request, "bookstore/index.html", context)
 
