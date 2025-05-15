@@ -160,6 +160,15 @@ footer {
     justify-content: center;
   }
 
+  #books {
+    padding: 0;
+  }
+
+  .collections-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .book-cover {
     margin-bottom: 10px;
   }
