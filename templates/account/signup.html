@@ -10,19 +10,41 @@
   </p>
 
   <form
-    class="signup"
+    class="signup shadow-lg p-3 mb-5 bg-body rounded"
     id="signup_form"
     method="post"
     action="{% url 'account_signup' %}"
   >
-    {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
+    {% csrf_token %}
+
+    <div class="row g-2">
+      {% for field in form %}
+      <div class="col-md-4">
+        <label for="{{ field.id_for_label }}" class="form-label fw-bold mb-0"
+          >{{ field.label }}:</label
+        >
+      </div>
+      <div class="col-md-6">
+        {{ field }} {% if field.errors %}
+        <div class="text-danger small">{{ field.errors|striptags }}</div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if redirect_field_value %}
     <input
       type="hidden"
       name="{{ redirect_field_name }}"
       value="{{ redirect_field_value }}"
     />
     {% endif %}
-    <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+
+    <div class="mt-4">
+      <button type="submit" class="btn btn-primary">
+        {% trans "Sign Up" %} &raquo;
+      </button>
+    </div>
   </form>
 </div>
 
