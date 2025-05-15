@@ -55,7 +55,7 @@
       {% for book in page_obj %}
       <div class="col-6 col-sm-6 col-md-4 col-lg-2 collections-container">
         <a href="{% url 'book_detail' book.id %}" class="text-decoration-none">
-          <div class="card mx-1 border-0">
+          <div class="card mx-1 border-0 book-cover">
             <img
               src="{{ book.cover_image.url }}"
               class="img-fluid"

@@ -28,9 +28,12 @@ def index(request):
 def book_detail(request, book_id):
     book = Book.objects.get(id=book_id)
     similar_books = Book.objects.filter(category=book.category).exclude(id=book_id)[:4]  # Get 4 similar books
+    # Get reviews for the book
+    reviews = book.reviews.all()  # Assuming you have a Review model related to Book
     context = {
         'book': book,
         'similar_books': similar_books,
+        'reviews': reviews,
     }
     return render(request, "bookstore/book_detail.html", context)
 
@@ -44,3 +47,6 @@ def category(request, category):
        
     }
     return render(request, "bookstore/category.html", context)
+
+def about(request):
+    return render(request, "bookstore/about.html")
