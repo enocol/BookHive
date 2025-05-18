@@ -21,7 +21,7 @@ def index(request):
     # Get featured books
     featured_books = Book.objects.filter(featured=True)
     # Paginate the books
-    paginator = Paginator(books, 8)  # 6 items per page
+    paginator = Paginator(books, 6)  # 6 items per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {

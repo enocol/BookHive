@@ -28,7 +28,6 @@ class Book(models.Model):
     author = models.CharField(max_length=200)
     published_date = models.DateField()
     cover_image = CloudinaryField('image', null=True, blank=True) 
-    borrower = models.ForeignKey(Borrower, on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
     featured = models.BooleanField(default=False)
     category = models.CharField(choices=choices, max_length=50, blank=True, null=True)
