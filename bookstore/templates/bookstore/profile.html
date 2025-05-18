@@ -17,6 +17,19 @@
     <p><strong>Last Name:</strong> Not provided</p>
     {% endif %}
   </div>
-</div>
 
-{% endblock%}
+  <div class="borrowed-books">
+    <h2>Borrowed Books</h2>
+    {% if loans %}
+    <ul>
+      {% for book in loans %}
+      <li>{{ book.title }} - {{ book.author }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No books borrowed yet.</p>
+    {% endif %}
+  </div>
+
+  {% endblock%}
+</div>

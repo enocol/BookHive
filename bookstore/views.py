@@ -130,7 +130,15 @@ def about(request):
 
 
 def profile(request):
-    return render(request, "bookstore/profile.html")
+    borrower = Borrower.objects.get(user=request.user)
+    borrowed_books = Book.objects.filter(loan__borrower=borrower).distinct()
+
+    context = {
+        'loans': borrowed_books,
+        'user': request.user,
+    }
+
+    return render(request, "bookstore/profile.html", context)
 
 
 def user_registration(request):
@@ -165,3 +173,5 @@ def user_registration(request):
     }
 
     return render(request, "bookstore/user_registration.html", context)
+
+
