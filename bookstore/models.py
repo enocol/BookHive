@@ -8,7 +8,7 @@ from cloudinary.models import CloudinaryField
 
 
 class Borrower(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField()
     phone_number = models.CharField(max_length=15, blank=True, null=True)
 
@@ -47,8 +47,8 @@ class Book(models.Model):
 class Loan(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     borrower = models.ForeignKey(Borrower, on_delete=models.CASCADE)
-    loan_date = models.DateField()
-    return_date = models.DateField()
+    loan_date = models.DateField(auto_now=True)
+    return_date = models.DateField(null=False, blank=False, default=None)
 
     def __str__(self):
         return f"{self.book.title} - {self.borrower.user.username}"
@@ -56,7 +56,7 @@ class Loan(models.Model):
 class Review(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviews')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rating = models.IntegerField()
+    rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)], default=0)
     comment = models.TextField(blank=True, null=True, default='')
     created_at = models.DateTimeField(auto_now_add=True)
 
