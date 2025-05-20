@@ -1,55 +1,65 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
 <div class="container my-5">
-  <h1>Sign In</h1>
+  {% if messages %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {% for message in messages %} {{ message }}<br />
+    {% endfor %}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
 
-  <p>
-    Don't have an account? Then please
-    <a href="{% url 'user_registration'%}">sign up</a>
-  </p>
+  {% endif %}
 
-  <form
-    class="login shadow-lg p-3 mb-5 bg-body rounded"
-    method="POST"
-    action="{% url 'account_login' %}"
-  >
-    {% csrf_token %}
+  <div class="row">
+    <h1>Sign In</h1>
 
-    <div class="row g-2">
-      {% for field in form %}
-      <div class="col-md-4">
-        <label for="{{ field.id_for_label }}" class="form-label fw-bold"
-          >{{ field.label }}:</label
-        >
+    <p>
+      Don't have an account? Then please
+      <a href="{% url 'user_registration'%}">sign up</a>
+    </p>
+
+    <form
+      class="login shadow-lg p-3 mb-5 bg-body rounded"
+      method="POST"
+      action="{% url 'account_login' %}"
+    >
+      {% csrf_token %}
+
+      <div class="row g-2">
+        {% for field in form %}
+        <div class="col-md-4">
+          <label for="{{ field.id_for_label }}" class="form-label fw-bold"
+            >{{ field.label }}:</label
+          >
+        </div>
+        <div class="col-6 col-sm-6 col-md-6">
+          {{ field }} {% if field.errors %}
+          <div class="text-danger small">{{ field.errors}}</div>
+          {% endif %}
+        </div>
+        {% endfor %}
       </div>
-      <div class="col-6 col-sm-6 col-md-6">
-        {{ field }} {% if field.errors %}
-        <div class="text-danger small">{{ field.errors|striptags }}</div>
-        {% endif %}
+
+      {% if redirect_field_value %}
+      <input
+        type="hidden"
+        name="{{ redirect_field_name }}"
+        value="{{ redirect_field_value }}"
+      />
+      {% endif %}
+
+      <div class="mt-4">
+        <button class="btn btn-primary primaryAction" type="submit">
+          Sign In
+        </button>
       </div>
-      {% endfor %}
-    </div>
+    </form>
+  </div>
 
-    {% if redirect_field_value %}
-    <input
-      type="hidden"
-      name="{{ redirect_field_name }}"
-      value="{{ redirect_field_value }}"
-    />
-    {% endif %}
-
-    <div class="mt-4">
-      <a
-        class="btn btn-outline-secondary me-3"
-        href="{% url 'account_reset_password' %}"
-      >
-        Forgot Password?
-      </a>
-      <button class="btn btn-primary primaryAction" type="submit">
-        Sign In
-      </button>
-    </div>
-  </form>
+  {% endblock %}
 </div>
-
-{% endblock %}

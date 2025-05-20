@@ -128,7 +128,7 @@ def category(request, category):
 def about(request):
     return render(request, "bookstore/about.html")
 
-
+@login_required
 def profile(request):
     borrower = Borrower.objects.get(user=request.user)
     borrowed_books = Book.objects.filter(loan__borrower=borrower).distinct()
@@ -144,7 +144,7 @@ def profile(request):
 def user_registration(request):
     if request.method == 'POST':
         # Get the form data
-        form  = UserRegistration(request.POST)
+        form  = UserRegistration(data=request.POST)
         user = User()
         if form.is_valid():
             # Save the user
@@ -158,8 +158,6 @@ def user_registration(request):
             )
 
             borrower.save()
-            print('Borrower created:', borrower)
-            print('User created:', user)
             messages.success(request, 'Registration successful! You can now log in.')
             return redirect('account_login')
         else:
@@ -167,9 +165,10 @@ def user_registration(request):
             messages.error(request, 'Please correct the errors below.')
         
     
-    # Render the registration form
+    
     context = {
         'form': UserRegistration(),
+        'messages': messages,
     }
 
     return render(request, "bookstore/user_registration.html", context)
