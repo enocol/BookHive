@@ -1,18 +1,50 @@
 addEventListener("DOMContentLoaded", function () {
   const sidebar = document.getElementById("sidebar");
   const arrow = document.querySelector(".arrow");
-  const menu = document.querySelector(".menu");
+
   sidebar.addEventListener("mouseenter", function () {
     sidebar.classList.add("show");
-    menu.classList.add("show");
-
-    arrow.style.transform = "rotate(180deg)";
-    arrow.style.transition = "transform 0.3s ease"; // smooth animation
+    arrow.style.display = "none"; // Hide the arrow when sidebar is shown
   });
   sidebar.addEventListener("mouseleave", function () {
     sidebar.classList.remove("show");
+    arrow.style.display = "block"; // Show the arrow when sidebar is hidden
     arrow.style.transform = "rotate(0deg)";
     arrow.style.transition = "transform 0.3s ease"; // smooth animation
-    menu.classList.remove("show");
+  });
+});
+
+const categoryItems = document.querySelectorAll(".category");
+
+categoryItems.forEach((item) => {
+  const text = item.textContent.trim(); // Get and clean the text inside the element
+
+  if (text === "Romance") {
+    item.style.color = "red";
+  } else if (text === "History") {
+    item.style.color = "blue";
+  } else if (text === "Science") {
+    item.style.color = "green";
+  } else if (text === "Fiction") {
+    item.style.color = "purple";
+  } else if (text === "Comedy") {
+    item.style.color = "yellow";
+  } else if (text === "Drama") {
+    item.style.color = "purple";
+  } else {
+    item.style.color = "black";
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const bookTitle = document.querySelectorAll(".title");
+
+  bookTitle.forEach((title) => {
+    const text = title.textContent.trim();
+    const capitalized = text
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+    title.textContent = capitalized;
   });
 });
