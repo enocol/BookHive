@@ -1,5 +1,5 @@
 from django import forms
-from .models import Review, Loan
+from .models import Review, Loan, Contact
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -49,11 +49,6 @@ class LoanForm(forms.ModelForm):
         help_texts = {
             'return_date': 'Select the date you plan to return the book.',
         }
-
-
-
-
-
 
 class UserRegistration(UserCreationForm):
 
@@ -124,7 +119,18 @@ class UserRegistration(UserCreationForm):
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
 
 
+class Contact(forms.ModelForm):
 
+    class Meta:
+        model = Contact
+        fields = ['name', 'email', 'message']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'message': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+        }
+    
+    
         
        
 

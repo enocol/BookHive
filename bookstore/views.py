@@ -1,9 +1,9 @@
 from django.shortcuts import redirect, render
 from django.shortcuts import get_object_or_404
-from django.contrib import messages  # Optional: For feedback
+from django.contrib import messages  
 from .models import Book, Loan
 from django.core.paginator import Paginator
-from .forms import ReviewForm
+from .forms import ReviewForm, Contact
 from .forms import LoanForm
 from django.contrib.auth.models import User
 from .models import Borrower
@@ -21,7 +21,7 @@ def index(request):
     # Get featured books
     featured_books = Book.objects.filter(featured=True)
     # Paginate the books
-    paginator = Paginator(books, 6)  # 6 items per page
+    paginator = Paginator(books, 6) 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -161,8 +161,7 @@ def user_registration(request):
             messages.success(request, 'Registration successful! You can now log in.')
             return redirect('account_login')
         else:
-            print('Form is not valid:', form.errors)
-            messages.error(request, 'Please correct the errors below.')
+            form = UserRegistration()
         
     
     
@@ -174,3 +173,25 @@ def user_registration(request):
     return render(request, "bookstore/user_registration.html", context)
 
 
+def contact(request):
+    form = Contact()
+    if request.method == 'POST':
+       form = Contact(request.POST)
+       if form.is_valid():
+           form.save()
+           messages.success(request, 'Your message has been sent successfully.')
+           return redirect('index')
+    else:
+
+            form = Contact()
+
+    context   = {
+        'form': form,
+    }   
+    return render(request, "bookstore/contact.html" , context)
+
+
+def custom_404_view(request, exception):
+    return render(request, "404.html", status=404)
+
+handler404 = custom_404_view
