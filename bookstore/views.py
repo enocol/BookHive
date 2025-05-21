@@ -127,7 +127,18 @@ def edit_review(request, review_id):
             review.save()
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
-
+def return_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    loan = Loan.objects.filter(book=book, borrower=request.user.borrower).first()
+    if loan:
+        # Increase the number of copies available
+        book.number_of_copies += 1
+        book.save()
+        loan.delete()
+        messages.success(request, 'Book returned successfully.')
+    else:
+        messages.error(request, 'You have not borrowed this book.')
+    return redirect('profile')
 
 def category(request, category):
     category = Book.objects.filter(category=category)

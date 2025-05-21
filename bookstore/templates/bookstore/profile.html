@@ -24,6 +24,57 @@
     <ul>
       {% for book in loans %}
       <li>{{ book.title }} - {{ book.author }}</li>
+      <button
+        type="button"
+        class="btn btn-danger btn-sm"
+        data-bs-toggle="modal"
+        data-bs-target="#returnBookModal{{ book.id }}"
+      >
+        Return Book
+      </button>
+      <!-- Return Book Modal -->
+      <div
+        class="modal fade"
+        id="returnBookModal{{ book.id }}"
+        tabindex="-1"
+        aria-labelledby="returnBookModalLabel{{ book.id }}"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="returnBookModalLabel{{ book.id }}">
+                Return Book
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to return "{{ book.title }}"?
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <form method="POST" action="{% url 'return_book' book.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">
+                  Return Book
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {% endfor %}
     </ul>
     {% else %}
