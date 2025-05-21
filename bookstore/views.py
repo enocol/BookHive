@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.shortcuts import get_object_or_404
 from django.contrib import messages  
-from .models import Book, Loan
+from .models import Book, Loan, Review
 from django.core.paginator import Paginator
 from .forms import ReviewForm, Contact
 from .forms import LoanForm
@@ -66,11 +66,12 @@ def book_detail(request, book_id):
                 # check if user has already borrowed the book
                 if Loan.objects.filter(book=book, borrower=request.user.borrower).exists():
                     messages.add_message(request, messages.ERROR,'You have already borrowed this book. Please return it before borrowing again.'
-    
     )
                     return redirect('book_detail', book_id=book.id)
+        
+
                 
-                 # check if book has been borrowed
+                 # check if book is available
                 if book.number_of_copies <= 0:
                     messages.add_message(request, messages.ERROR,'This book is currently not available for borrowing.')
                     return redirect('book_detail', book_id=book.id)
@@ -81,7 +82,7 @@ def book_detail(request, book_id):
                 book.save()
                 loan = loan_form.save(commit=False)
                 loan.book = book
-                # loan.borrower = request.user.borrower
+                
                 try:
                    loan.borrower = request.user.borrower  # Will raise if borrower doesn't exist
                 except Borrower.DoesNotExist:
@@ -92,6 +93,8 @@ def book_detail(request, book_id):
                 request, messages.SUCCESS,'You have successfully borrowed the book. Please return it by the due date.'
     )
                 return redirect('book_detail', book_id=book.id)
+                
+            
             else:
                 messages.add_message(request, messages.ERROR,'There was an error with your loan request. Please try again.'
     )
@@ -112,6 +115,17 @@ def book_detail(request, book_id):
     }
 
     return render(request, 'bookstore/book_detail.html', context)
+
+
+@login_required
+def edit_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id, user=request.user)
+    if request.method == 'POST':
+        comment = request.POST.get('comment')
+        if comment:
+            review.comment = comment
+            review.save()
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 
@@ -147,7 +161,6 @@ def user_registration(request):
         form  = UserRegistration(data=request.POST)
         user = User()
         if form.is_valid():
-            # Save the user
             user = form.save()
           
             # Create a Borrower instance
