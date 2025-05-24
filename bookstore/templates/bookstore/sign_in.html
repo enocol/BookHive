@@ -1,0 +1,65 @@
+<!-- templates/bookstore/login.html -->
+{% extends 'base.html' %} {% load static%} {% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Login</h2>
+  <p class="text-center">
+    Don't have an account? Then please
+    <a href="{% url 'user_registration' %}">sign up</a>
+  </p>
+  <p class="text-center">
+    <a href="">Forgot Password?</a>
+  </p>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <form method="POST">
+        {% csrf_token %}
+
+        <!-- Non-field errors -->
+
+        <div
+          class="alert alert-warning alert-dismissible fade show mb-3"
+          role="alert"
+        >
+          <!-- prettier-ignore -->
+          {% if form.non_field_errors %} {% for error in form.non_field_errors %}
+          <div>{{ error }}</div>
+          {% endfor %} {% endif %}
+
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <!-- Username Field -->
+        <div class="row">
+          <div class="mb-3">
+            {{ form.username.label_tag }} {{ form.username }}
+          </div>
+          {% if form.username.errors %}
+          <div class="text-danger small">
+            {% for error in form.username.errors %} {{ error }} {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- Password Field -->
+        <div class="row">
+          <div class="mb-3">
+            {{ form.password.label_tag }} {{ form.password }}
+          </div>
+          {% if form.password.errors %}
+          <div class="text-danger small">
+            {% for error in form.password.errors %} {{ error }} {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

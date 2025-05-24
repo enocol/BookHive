@@ -106,14 +106,14 @@ signup_url %} {% url 'profile' as profile_url %} {% url 'about' as about_url %}
                   class="nav-link {% if request.path == signup_url %}active{% endif %}"
                   aria-current="page"
                   href="{% url 'user_registration' %}"
-                  ><div><i class="fa-solid fa-user-plus"></i> Sign Up</div></a
+                  ><div><i class="fa-solid fa-user-plus"></i> Register</div></a
                 >
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link {% if request.path == login_url %}active{% endif %}"
                   aria-current="page"
-                  href="{% url 'account_login' %}"
+                  href="{% url 'sign_in' %}"
                   ><div><i class="fa-solid fa-user"></i> Sign In</div></a
                 >
               </li>

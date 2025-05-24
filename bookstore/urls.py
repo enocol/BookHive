@@ -9,9 +9,11 @@ urlpatterns = [
     path("return-book/<int:book_id>/", views.return_book, name="return_book"),
 
     path("register/", views.user_registration, name="user_registration"),
+    path("login/", views.sign_in, name="sign_in"),
     path("category/<str:category>/", views.category, name="book_category"),
     path("search/", views.index, name="search"), 
     path("about/", views.about, name="about"),
     path("profile/", views.profile, name="profile"),
     path("contact/", views.contact, name="contact"),
+    
 ]

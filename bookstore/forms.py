@@ -2,6 +2,7 @@ from django import forms
 from .models import Review, Loan, Contact
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class ReviewForm(forms.ModelForm):
@@ -129,7 +130,20 @@ class Contact(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'message': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
         }
-    
+
+
+class SigninForm(forms.Form):
+    username = forms.CharField(
+        max_length=150,
+        label="Username",
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter username'})
+    )
+    password = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter password'})
+    )
+
+  
     
         
        

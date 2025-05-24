@@ -62,9 +62,16 @@
     {% endfor %}
 
     <hr />
+    {% if query %}
     <div class="col-md-12">
-      <h2 class="goldenrod">Explore Our Collection</h2>
+      <h2 class="goldenrod">Showing results for "{{query}}"</h2>
     </div>
+    {% else %}
+    <div class="col-md-12">
+      <h2 class="goldenrod">All Books</h2>
+      <p>Explore our entire collection.</p>
+    </div>
+    {% endif %}
     <div class="row g-2 books-container">
       {% for book in page_obj %}
       <div class="col-6 col-sm-6 col-md-4 col-lg-2 collections-container">

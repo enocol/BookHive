@@ -3,7 +3,7 @@
 <div class="container shadow p-3 mb-5 bg-body rounded">
   <div class="profile-info">
     <h2>Profile Information</h2>
-    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Username:</strong> {{borrower}}</p>
     <p><strong>Email:</strong> {{ user.email }}</p>
 
     {% if user.first_name %}
@@ -23,7 +23,16 @@
     {% if loans %}
     <ul>
       {% for book in loans %}
-      <li>{{ book.title }} - {{ book.author }}</li>
+      <li>
+        {{ book.title }} - {{ book.author }} {% for o in return_date %} Return
+        Date: {{ o.return_date }} {% if current_date > o.return_date %}
+        <span class="text-danger">Overdue</span>
+        {% else %}
+        <span class="text-success">On Time</span>
+        {% endif %} {% empty %}
+        <p>No return dates available.</p>
+        {% endfor %}
+      </li>
       <button
         type="button"
         class="btn btn-danger btn-sm"

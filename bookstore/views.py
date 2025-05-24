@@ -1,23 +1,18 @@
 from django.shortcuts import redirect, render
 from django.shortcuts import get_object_or_404
 from django.contrib import messages  
-from .models import Book, Loan, Review
-from django.core.paginator import Paginator
-from .forms import ReviewForm, Contact
-from .forms import LoanForm
-from django.contrib.auth.models import User
-from .models import Borrower
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegistration
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator
+from .models import Book, Loan, Review, Borrower
+from .forms import ReviewForm, Contact, LoanForm, SigninForm, UserRegistration
+from django.contrib.auth import authenticate, login
 
 
 def index(request):
     query = request.GET.get('search', '')
-    if query:
-        books = Book.objects.filter(title__icontains=query)
-    else:
-       books = Book.objects.all()
-    
+    books = Book.objects.filter(title__icontains=query) if query else Book.objects.all()
+   
     # Get featured books
     featured_books = Book.objects.filter(featured=True)
     # Paginate the books
@@ -28,6 +23,7 @@ def index(request):
         'page_obj': page_obj,
         'featured_books': featured_books,
         'query': query,
+        
         
     }
     return render(request, "bookstore/index.html", context)
@@ -46,7 +42,7 @@ def book_detail(request, book_id):
 
     if request.method == 'POST':
         if 'submit_review' in request.POST:
-            review_form = ReviewForm(request.POST)
+            review_form = ReviewForm(data=request.POST)
             if review_form.is_valid():
                 review = review_form.save(commit=False)
                 review.book = book
@@ -79,18 +75,22 @@ def book_detail(request, book_id):
                 
                 # reduce the number of copies available
                 book.number_of_copies -= 1
+                # generate a collection code
+                book.collection_code = f"{book.id}-{request.user.username}"
+
+
                 book.save()
                 loan = loan_form.save(commit=False)
                 loan.book = book
                 
                 try:
-                   loan.borrower = request.user.borrower  # Will raise if borrower doesn't exist
+                   loan.borrower = request.user.borrower 
                 except Borrower.DoesNotExist:
                     messages.error(request, "You must be registered as a borrower to request a loan.")
                     return redirect('book_detail', book_id=book.id)
                 loan.save()
                 messages.add_message(
-                request, messages.SUCCESS,'You have successfully borrowed the book. Please return it by the due date.'
+                request, messages.SUCCESS,'Loan Submitted. Colllection Code: {}'.format(book.collection_code)
     )
                 return redirect('book_detail', book_id=book.id)
                 
@@ -157,10 +157,13 @@ def about(request):
 def profile(request):
     borrower = Borrower.objects.get(user=request.user)
     borrowed_books = Book.objects.filter(loan__borrower=borrower).distinct()
+    return_date = Loan.objects.filter(borrower=borrower).values('return_date')
 
     context = {
         'loans': borrowed_books,
         'user': request.user,
+        'borrower': borrower,
+        'return_date': return_date,
     }
 
     return render(request, "bookstore/profile.html", context)
@@ -168,33 +171,60 @@ def profile(request):
 
 def user_registration(request):
     if request.method == 'POST':
-        # Get the form data
-        form  = UserRegistration(data=request.POST)
-        user = User()
+        form = UserRegistration(request.POST)
+
         if form.is_valid():
+            # Check if username or email already exists
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+
+            if User.objects.filter(username=username).exists():
+                messages.error(request, 'Username already exists. Please choose a different one.')
+                return redirect('user_registration')
+
+            if User.objects.filter(email=email).exists():
+                messages.error(request, 'Email already exists. Please choose a different one.')
+                return redirect('user_registration')
+
+            # Everything is valid, save the user
             user = form.save()
-          
-            # Create a Borrower instance
-            borrower = Borrower.objects.create(
+
+            # Create the related Borrower object
+            Borrower.objects.create(
                 user=user,
-                email=form.cleaned_data['email'],
-               
+                email=email,
+                
             )
 
-            borrower.save()
             messages.success(request, 'Registration successful! You can now log in.')
             return redirect('account_login')
-        else:
-            form = UserRegistration()
-        
-    
-    
-    context = {
-        'form': UserRegistration(),
-        'messages': messages,
-    }
 
-    return render(request, "bookstore/user_registration.html", context)
+        else:
+            # Form is not valid — show errors
+            messages.error(request, 'Please correct the errors below.')
+
+    else:
+        form = UserRegistration()
+
+    return render(request, 'bookstore/user_registration.html', {'form': form})
+
+
+def sign_in(request):
+    if request.method == 'POST':
+        form = SigninForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'Login successful!')
+                return redirect('index')
+            else:
+                form.add_error(None, 'Invalid username or password.')
+    else:
+        form = SigninForm()
+    return render(request, 'bookstore/sign_in.html', {'form': form})
 
 
 def contact(request):
