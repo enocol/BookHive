@@ -15,15 +15,14 @@
         {% csrf_token %}
 
         <!-- Non-field errors -->
+        <!-- prettier-ignore -->
+        {% if form.non_field_errors %} {% for error in form.non_field_errors %}
 
         <div
           class="alert alert-warning alert-dismissible fade show mb-3"
           role="alert"
         >
-          <!-- prettier-ignore -->
-          {% if form.non_field_errors %} {% for error in form.non_field_errors %}
-          <div>{{ error }}</div>
-          {% endfor %} {% endif %}
+          {{ error }}
 
           <button
             type="button"
@@ -32,6 +31,7 @@
             aria-label="Close"
           ></button>
         </div>
+        {% endfor %} {% endif %}
 
         <!-- Username Field -->
         <div class="row">
