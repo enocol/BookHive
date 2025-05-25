@@ -6,8 +6,8 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("book/<int:book_id>/", views.book_detail, name="book_detail"),
     path('edit-review/<int:review_id>/', views.edit_review, name='edit_review'),
+    path('delete-review/<int:review_id>/', views.delete_review, name='delete_review'),
     path("return-book/<int:book_id>/", views.return_book, name="return_book"),
-
     path("register/", views.user_registration, name="user_registration"),
     path("login/", views.sign_in, name="sign_in"),
     path("category/<str:category>/", views.category, name="book_category"),

@@ -127,6 +127,15 @@ def edit_review(request, review_id):
             review.save()
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id, user=request.user)
+    if request.method == 'POST':
+        review.delete()
+        messages.success(request, 'Review deleted successfully.')
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+
 def return_book(request, book_id):
     book = get_object_or_404(Book, id=book_id)
     loan = Loan.objects.filter(book=book, borrower=request.user.borrower).first()

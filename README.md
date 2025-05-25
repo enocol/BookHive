@@ -23,9 +23,12 @@ This project demonstrates my ability to build scalable, modular Django applicati
 As a regular user of **BookHive**, I want to:
 
 - Access the website seamlessly across all devices — desktops, laptops, tablets, and smartphones.
+
 - Navigate a clean, consistent, and responsive interface with intuitive menus and clear categories.
+
 - Browse books by genre, title, or author with easy filtering and search functionality.
 - View detailed information about each book, including title, author, cover image, description, and category.
+
 - Register or log in quickly using an email address or a connected social media account (e.g., Google).
 - Leave reviews for books and read others’ feedback to help with selection.
 - Borrow books with clear instructions and receive confirmation or error messages as needed.
