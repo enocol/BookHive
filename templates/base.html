@@ -81,43 +81,62 @@ signup_url %} {% url 'profile' as profile_url %} {% url 'about' as about_url %}
                   </div>
                 </a>
               </li>
-              {% if user.is_authenticated %}
-              <li class="nav-item">
+              <li class="nav-item dropdown">
                 <a
-                  class="nav-link {% if request.path == logout_url %}active{% endif %}"
-                  aria-current="page"
-                  href="{% url 'account_logout' %}"
-                  ><div>
-                    <i class="fa-solid fa-right-from-bracket"></i> Sign Out
-                  </div></a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDarkDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
                 >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link {% if request.path == profile_url %}active{% endif %}"
-                  aria-current="page"
-                  href="{% url 'profile' %}"
-                  ><div><i class="fa-solid fa-user"></i> Profile</div></a
+                  My Account
+                </a>
+                <ul
+                  class="dropdown-menu px-2"
+                  aria-labelledby="navbarDarkDropdownMenuLink"
                 >
+                  {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a
+                      class="nav-link {% if request.path == logout_url %}active{% endif %}"
+                      aria-current="page"
+                      href="{% url 'account_logout' %}"
+                      ><div>
+                        <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+                      </div></a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link {% if request.path == profile_url %}active{% endif %}"
+                      aria-current="page"
+                      href="{% url 'profile' %}"
+                      ><div><i class="fa-solid fa-user"></i> Profile</div></a
+                    >
+                  </li>
+                  {% else %}
+                  <li class="nav-item">
+                    <a
+                      class="nav-link {% if request.path == signup_url %}active{% endif %}"
+                      aria-current="page"
+                      href="{% url 'user_registration' %}"
+                      ><div>
+                        <i class="fa-solid fa-user-plus"></i> Register
+                      </div></a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link {% if request.path == login_url %}active{% endif %}"
+                      aria-current="page"
+                      href="{% url 'sign_in' %}"
+                      ><div><i class="fa-solid fa-user"></i> Sign In</div></a
+                    >
+                  </li>
+                  {% endif %}
+                </ul>
               </li>
-              {% else %}
-              <li class="nav-item">
-                <a
-                  class="nav-link {% if request.path == signup_url %}active{% endif %}"
-                  aria-current="page"
-                  href="{% url 'user_registration' %}"
-                  ><div><i class="fa-solid fa-user-plus"></i> Register</div></a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link {% if request.path == login_url %}active{% endif %}"
-                  aria-current="page"
-                  href="{% url 'sign_in' %}"
-                  ><div><i class="fa-solid fa-user"></i> Sign In</div></a
-                >
-              </li>
-              {% endif %}
             </ul>
           </div>
         </div>
