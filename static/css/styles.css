@@ -187,10 +187,6 @@ footer .social-icons {
   font-size: 25px;
 }
 
-.active {
-  border-bottom: 2px solid #007bff;
-  padding: 5px;
-}
 
 @media screen and (max-width: 368px) {
   .featured-books-container {
