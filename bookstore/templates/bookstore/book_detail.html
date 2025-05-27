@@ -179,15 +179,20 @@
   </div>
   <hr />
   <div class="row">
-    <div class="col-sm-12 col-md-10 col-lg-6 mt-5">
+    <div class="col-12 my-5">
       <h4 class="text-center">Reviews</h4>
       {% for comments in reviews %}
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <div class="d-flex gap-3 align-items-center">
+            <div class="comment-container">
               <div class="my-3">
-                {{ comments.user.username }}: {{ comments.comment }}
+                <div>
+                  <strong>{{ comments.user.username }}</strong>
+                  <span class="text-muted">
+                    {{ comments.created_at|date:"F j, Y, g:i a" }}
+                </div> 
+                <p>{{ comments.comment }}</p>
               </div>
               {% if comments.user == user %}
               <button
