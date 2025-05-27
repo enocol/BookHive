@@ -208,6 +208,10 @@ footer .social-icons {
   }
 
   @media screen and (min-width: 1024px) {
+    #borrow-book-button{
+      width: 50%;
+     
+    }
   }
 
   @media screen and (max-width: 768px) {

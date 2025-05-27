@@ -16,7 +16,7 @@ This project demonstrates my ability to build scalable, modular Django applicati
 - [Future Features](#future-features)
 - [Credits](#credits)
 
-# 🧠 User Experience (UX)
+# 🧠user-experience-ux
 
 ## ✅ For General Users
 
@@ -27,9 +27,9 @@ As a regular user of **BookHive**, I want to:
 - Navigate a clean, consistent, and responsive interface with intuitive menus and clear categories.
 
 - Browse books by genre, title, or author with easy filtering and search functionality.
-- View detailed information about each book, including title, author, cover image, description, and category.
+- View detailed information about each book, including title, author, cover image, and description
 
-- Register or log in quickly using an email address or a connected social media account (e.g., Google).
+- Register or log in quickly using a username
 - Leave reviews for books and read others’ feedback to help with selection.
 - Borrow books with clear instructions and receive confirmation or error messages as needed.
 - Return to the homepage or previous browsing state without getting lost.
@@ -63,19 +63,23 @@ As an admin, I want to:
 
 ### 📚 Home Page (Book List)
 
-![BookHive Home](screenshots/home.png)
+![BookHive Home](static/images/home.png)
 
-### 🔍 Search Results
 
-![Search Results](screenshots/search.png)
 
 ### 📘 Book Detail Page
 
-![Book Detail](screenshots/book_detail.png)
+![Book Detail](static/images/book_detail.png)
 
 ### 🔐 Login Page
 
-![Login Page](screenshots/login.png)
+![Login Page](static/images/login.png)
+
+### Register page
+
+![Login Page](static/images/register.png)
+
+
 
 ## 🚀 Features
 
@@ -100,6 +104,38 @@ As an admin, I want to:
 - **Authentication**: `django-allauth`
 
 ---
+| Test Case                    | Action                                    | Expected Outcome                                 |
+| ---------------------------- | ----------------------------------------- | ------------------------------------------------ |
+| Register with valid inputs   | Fill in registration form with valid data | Account is created and user is logged in         |
+| Register with duplicate user | Use an existing username                  | Error message: "This username is already taken." |
+| Login with correct details   | Enter valid username and password         | User is logged in successfully                   |
+| Login with wrong password    | Enter valid username but wrong password   | Error message is displayed                       |
+
+
+| Test Case          | Action                                         | Expected Outcome                                |
+| ------------------ | ---------------------------------------------- | ----------------------------------------------- |
+| View homepage      | Visit `/`                                      | Featured and latest books are displayed         |
+| Click a book card  | Click on a book from homepage or category list | Redirected to book detail page with description |
+| Filter by category | Click on category (e.g., Fiction, Science)     | Only books from that category are shown         |
+| Search for a book  | Use the search input with a keyword            | Matching books are shown                        |
+
+📚 Book Browsing and Details
+| Test Case          | Action                                         | Expected Outcome                                |
+| ------------------ | ---------------------------------------------- | ----------------------------------------------- |
+| View homepage      | Visit `/`                                      | Featured and latest books are displayed         |
+| Click a book card  | Click on a book from homepage or category list | Redirected to book detail page with description |
+| Filter by category | Click on category (e.g., Fiction, Science)     | Only books from that category are shown         |
+| Search for a book  | Use the search input with a keyword            | Matching books are shown                        |
+
+
+💬 4. Reviews and Comments
+| Test Case       | Action                                        | Expected Outcome                   |
+| --------------- | --------------------------------------------- | ---------------------------------- |
+| Add a review    | Fill comment form on a book page              | Comment is added and displayed     |
+| Edit a review   | Click "Edit", update the comment in the modal | Updated comment is saved and shown |
+| Delete a review | Click "Delete", confirm action                | Comment is removed from the page   |
+
+
 
 ## ⚙️ Installation
 
