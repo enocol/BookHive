@@ -32,6 +32,13 @@ header {
   height: 250px;
 }
 
+.book-detail-img {
+  width: 95%;
+  height: 550px;
+  border-radius: 10px;
+}
+
+
 .goldenrod {
   color: #ffcc00;
 }
@@ -49,6 +56,13 @@ header {
   align-items: center;
   flex-direction: column;
 }
+
+#borrow-book-button {
+    width: 100%;
+    margin: 10px;
+    height: 60px;
+    
+  }
 
 .book-cover:hover {
   transform: scale(1.05);
@@ -201,19 +215,26 @@ footer .social-icons {
     height: 250px;
   }
 
-  .book-cover-details img {
-    width: 80%;
-    height: 250px;
-    border-radius: 10px;
-  }
 
-  @media screen and (min-width: 1024px) {
-    #borrow-book-button{
-      width: 50%;
-     
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-  }
 }
+
+@media screen and (min-width: 1024px) {
+    
+  #borrow-book-button{
+    width: 50%;
+    margin: 20px auto;
+    height: 50px;
+    
+  }
+
+  .book-detail-img {
+  width: 50%;
+  height: 350px;
+  border-radius: 10px;
+}
+
+}
+@media screen and (max-width: 768px) {
+  }
+
+

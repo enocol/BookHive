@@ -19,11 +19,11 @@
         <img
           src="{{ book.cover_image.url }}"
           alt="{{ book.title }}"
-          class="img-fluid"
+          class="img-fluid book-detail-img"
         />
         {% if user.is_authenticated %}
         <button
-          class="btn btn-primary mt-3 rounded-pill w-100"
+          class="btn btn-primary mt-3 rounded-pill"
           id="borrow-book-button"
           type="button"
           data-bs-toggle="modal"
