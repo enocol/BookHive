@@ -1,38 +1,30 @@
-addEventListener("DOMContentLoaded", function () {
-  const sidebar = document.getElementById("sidebar");
-  const arrow = document.querySelector(".arrow");
-
-  sidebar.addEventListener("mouseenter", function () {
-    sidebar.classList.add("show");
-    arrow.style.display = "none"; // Hide the arrow when sidebar is shown
-  });
-  sidebar.addEventListener("mouseleave", function () {
-    sidebar.classList.remove("show");
-    arrow.style.display = "block"; // Show the arrow when sidebar is hidden
-    arrow.style.transform = "rotate(0deg)";
-    arrow.style.transition = "transform 0.3s ease"; // smooth animation
-  });
-});
 
 const categoryItems = document.querySelectorAll(".category");
 
 categoryItems.forEach((item) => {
   const text = item.textContent.trim(); // Get and clean the text inside the element
 
-  if (text === "Romance") {
-    item.style.color = "red";
-  } else if (text === "History") {
-    item.style.color = "blue";
-  } else if (text === "Science") {
-    item.style.color = "green";
-  } else if (text === "Fiction") {
-    item.style.color = "purple";
-  } else if (text === "Comedy") {
-    item.style.color = "yellow";
-  } else if (text === "Drama") {
-    item.style.color = "purple";
-  } else {
-    item.style.color = "black";
+  switch (text) {
+    case "Romance":
+      item.style.color = "red";
+      break;
+    case "History":
+      item.style.color = "blue";
+      break;
+    case "Science":
+      item.style.color = "green";
+      break;
+    case "Fiction":
+      item.style.color = "purple";
+      break;
+    case "Comedy":
+      item.style.color = "yellow";
+      break;
+    case "Drama":
+      item.style.color = "purple";
+      break;
+    default:
+      item.style.color = "black";
   }
 });
 
