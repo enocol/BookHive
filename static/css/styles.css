@@ -92,6 +92,7 @@ header {
 }
 
 .pagination {
+  margin-top: 15px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -153,26 +154,30 @@ header {
 }
 
 .card-body div {
-  padding: 10px;
-  min-height: 80px;
+  padding:5px;
   overflow: hidden;
+  text-overflow: ellipsis;
+  
 }
 
 .card-body h3 {
   font-size: 12px;
   font-weight: bold;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  
 }
 
 .card-body h4 {
   font-size: 16px;
   font-weight: normal;
+  
+}
+
+.card-body h4, h3 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 
 .card-body h3,
 .card-body h4 {

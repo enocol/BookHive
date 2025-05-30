@@ -52,7 +52,10 @@
           <div class="card-body">
             <div>
               <h3>{{ book.title }}</h3>
-              <h4>{{ book.author }}</h4>
+              <div class="d-flex justify-content-between">
+                <h4>{{ book.author }}</h4>
+                <h4 class="category">{{book.category}}</h4>
+              </div>
             </div>
           </div>
         </div>
@@ -86,7 +89,10 @@
             <div class="card-body">
               <div>
                 <h3>{{ book.title }}</h3>
+               <div class="d-flex justify-content-between">
                 <h4>{{ book.author }}</h4>
+                <h4 class="category">{{book.category}}</h4>
+              </div>
               </div>
             </div>
           </div>
