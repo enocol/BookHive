@@ -92,7 +92,7 @@ def book_detail(request, book_id):
                 messages.add_message(
                 request, messages.SUCCESS,'Loan Submitted. Colllection Code: {}'.format(book.collection_code)
     )
-                return redirect('book_detail', book_id=book.id)
+                return redirect('profile')
                 
             
             else:
@@ -223,11 +223,12 @@ def sign_in(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+            next_url = request.POST.get('next')  # capture 'next'
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
                 messages.success(request, 'Login successful!')
-                return redirect('index')
+                return redirect(next_url or 'index')  # go to next or fallback
             else:
                 form.add_error(None, 'Invalid username or password.')
     else:

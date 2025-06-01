@@ -34,7 +34,7 @@
 
         {% else %}
         <a
-          href="{% url 'account_login' %}"
+          href="{% url 'account_login' %}?next={{ request.path }}"
           class="mt-3 btn btn-primary text-decoration-none"
         >
           <i class="fa-solid fa-book-open"></i> Sign In to borrow a Book
