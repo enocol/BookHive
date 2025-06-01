@@ -2,7 +2,7 @@
 
 <div class="container shadow p-3 bg-body rounded h-100 overflow-auto">
   <div class="profile-info">
-    <h2>Profile Information</h2>
+    <h2 class="goldenrod">Profile Information</h2>
 
     <div class="row my-4">
       <div class="col-6 col-md-4">User Name:</div>
@@ -35,7 +35,7 @@
     </div>
 
     <div class="borrowed-books over-flow">
-      <h2>Borrowed Books</h2>
+      <h2 class="goldenrod">Borrowed Books</h2>
       {% if loan %}
       <p>You have borrowed {{ loan|length }} book(s).</p>
       {% for book in loan %}

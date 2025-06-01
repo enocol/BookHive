@@ -6,9 +6,8 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-family: "PT Sans", sans-serif;
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
   color: #333;
-
 }
 
 header {
@@ -46,9 +45,13 @@ header {
   border-radius: 10px;
 }
 
-
 .goldenrod {
   color: #ffcc00;
+  font-weight: 900;
+}
+
+.border-red {
+  border: 5px solid red;
 }
 
 .book-cover {
@@ -66,11 +69,10 @@ header {
 }
 
 #borrow-book-button {
-    width: 100%;
-    margin: 10px;
-    height: 60px;
-    
-  }
+  width: 100%;
+  margin: 10px;
+  height: 60px;
+}
 
 .book-cover:hover {
   transform: scale(1.05);
@@ -157,30 +159,27 @@ header {
 }
 
 .card-body div {
-  padding:5px;
+  padding: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
-  
 }
 
 .card-body h3 {
   font-size: 12px;
   font-weight: bold;
-  
 }
 
 .card-body h4 {
   font-size: 16px;
   font-weight: normal;
-  
 }
 
-.card-body h4, h3 {
+.card-body h4,
+h3 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 
 .card-body h3,
 .card-body h4 {
@@ -188,7 +187,7 @@ header {
 }
 
 .comment-container button {
- width: 6%
+  width: 6%;
 }
 
 .comment-container form button {
@@ -207,7 +206,6 @@ footer {
 footer .social-icons {
   font-size: 25px;
 }
-
 
 @media screen and (max-width: 500px) {
   .featured-books-container {
@@ -244,29 +242,22 @@ footer .social-icons {
   }
 
   footer .social-icons {
-  flex-direction: row;
-}
-
-
+    flex-direction: row;
+  }
 }
 
 @media screen and (min-width: 1024px) {
-    
-  #borrow-book-button{
+  #borrow-book-button {
     width: 50%;
     margin: 20px auto;
     height: 50px;
-    
   }
 
   .book-detail-img {
-  width: 50%;
-  height: 350px;
-  border-radius: 10px;
-}
-
+    width: 50%;
+    height: 350px;
+    border-radius: 10px;
+  }
 }
 @media screen and (max-width: 768px) {
-  }
-
-
+}

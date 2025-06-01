@@ -1,15 +1,19 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<div class="container mt-4">
-  <div class="row">
+<div class="container my-4 shadow-lg p-3 bg-body rounded h-100 overflow-auto">
+  <div class="row justify-content-center">
     <div class="col-12">
-      <h1>Contact Us</h1>
-      <p>If you have any questions, feel free to reach out to us!</p>
-
-      <form method="post" action="{% url 'contact' %}">
+      <form
+        method="post"
+        action="{% url 'contact' %}"
+        class="d-flex flex-column align-items-center justify-content-center"
+      >
+        <h1 class="goldenrod">Contact Us</h1>
+        <p>If you have any questions, feel free to reach out to us!</p>
         {% csrf_token %} {% for field in form %}
-        <div class="row mb-3">
+
+        <div class="">
           <!-- Label -->
-          <div class="col-12 col-md-4 text-md-end mb-1 mb-md-0">
+          <div class="">
             <label
               for="{{ field.id_for_label }}"
               class="form-label fw-semibold"
@@ -19,7 +23,7 @@
           </div>
 
           <!-- Input -->
-          <div class="col-12 col-md-6">
+          <div class="w-100">
             {{ field }} {% if field.errors %}
             <div class="text-danger mt-1">
               {% for error in field.errors %}
@@ -28,13 +32,15 @@
             </div>
             {% endif %}
           </div>
-        </div>
-        {% endfor %}
 
-        <!-- Submit Button -->
-        <div class="row">
-          <div class="offset-md-4 col-md-6">
-            <button type="submit" class="btn btn-primary">Submit</button>
+          {% endfor %}
+
+          <!-- Submit Button -->
+
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary my-3 w-100">
+              Submit
+            </button>
           </div>
         </div>
       </form>

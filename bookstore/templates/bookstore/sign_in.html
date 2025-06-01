@@ -1,15 +1,15 @@
 <!-- templates/bookstore/login.html -->
 {% extends 'base.html' %} {% load static%} {% block content %}
-<div class="container mt-5 shadow-lg p-3 mb-5 bg-body rounded bg-dark">
-  <h2 class="text-center mb-4">Login</h2>
+<div class="container shadow-lg p-3 bg-body rounded bg-dark h-75">
+  <h2 class="text-center my-4 goldenrod">Login</h2>
   <p class="text-center">
     Don't have an account? Then please
-    <a href="{% url 'user_registration' %}">sign up</a>
+    <a href="{% url 'user_registration' %}">Register</a>
   </p>
 
   <div class="row justify-content-center">
     <div class="col-sm-12 col-md-6">
-      <form method="POST">
+      <form method="POST" class="border bg-light rounded">
         {% csrf_token %}
 
         <!-- Non-field errors -->
