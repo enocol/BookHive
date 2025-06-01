@@ -1,4 +1,4 @@
-{% load static %} 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +13,11 @@
       referrerpolicy="no-referrer"
     />
 
-    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
+    <link
+      rel="icon"
+      href="{% static 'images/favicon.png' %}"
+      type="image/png"
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -66,7 +70,7 @@
                   href="{% url 'index' %}"
                   ><div>
                     <i class="fa-solid fa-house"></i>
-                    Home
+                    Books
                   </div></a
                 >
               </li>

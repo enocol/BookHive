@@ -46,8 +46,9 @@ header {
 }
 
 .goldenrod {
-  color: #ffcc00;
-  font-weight: 900;
+  color: goldenrod;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .border-red {
