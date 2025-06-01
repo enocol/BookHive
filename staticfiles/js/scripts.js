@@ -1,9 +1,7 @@
-
 const categoryItems = document.querySelectorAll(".category");
-console.log('category = ', categoryItems); // Log the NodeList to the console  
 
 categoryItems.forEach((item) => {
-  const text = item.textContent.trim(); // Get and clean the text inside the element
+  const text = item.textContent.trim();
 
   switch (text) {
     case "Romance":
