@@ -262,6 +262,7 @@ Make sure the ESLint extension is installed in VSCode.
 ```bash
 git clone https://github.com/enocol/bookhive.git
 cd bookhive
+npm install
 ```
 
 ---
