@@ -1,6 +1,18 @@
 {% extends 'base.html'%} {% load static%} {% block content%}
 
 <div class="container shadow p-3 bg-body rounded h-100 overflow-auto">
+  {% if messages %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {% for message in messages %} {{ message }}<br />
+    {% endfor %}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  {% endif %}
   <div class="profile-info">
     <h2 class="goldenrod">Profile Information</h2>
 
