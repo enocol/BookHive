@@ -187,14 +187,6 @@ h3 {
   margin: 0;
 }
 
-.comment-container button {
-  width: 6%;
-}
-
-.comment-container form button {
-  width: 100%;
-}
-
 footer {
   background-color: goldenrod;
   padding: 10px;
