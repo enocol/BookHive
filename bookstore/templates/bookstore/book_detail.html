@@ -313,8 +313,12 @@
         </p>
         <form method="POST" action="">
           {% csrf_token %} {{ loan_form.as_p }}
-          <button type="submit" name="submit_loan" class="btn btn-primary">
-            Request Loan
+          <button
+            type="submit"
+            name="submit_loan"
+            class="btn btn-primary w-100"
+          >
+            Confirm Borrow
           </button>
         </form>
       </div>
