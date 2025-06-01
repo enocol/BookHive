@@ -3,10 +3,11 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages  
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator
+from django.views.decorators.cache import never_cache
 from .models import Book, Loan, Review, Borrower
 from .forms import ReviewForm, Contact, LoanForm, SigninForm, UserRegistration
-from django.contrib.auth import authenticate, login
 
 
 def index(request):
@@ -176,8 +177,12 @@ def profile(request):
 
     return render(request, "bookstore/profile.html", context)
 
-
+@never_cache
 def user_registration(request):
+
+    if request.user.is_authenticated:
+        return redirect('index')  # prevent logged-in users from seeing registration page
+    # Handle user registration
     if request.method == 'POST':
         form = UserRegistration(request.POST)
 
@@ -214,10 +219,19 @@ def user_registration(request):
     else:
         form = UserRegistration()
 
-    return render(request, 'bookstore/user_registration.html', {'form': form})
+    # return render(request, 'bookstore/user_registration.html', {'form': form})
+    response = render(request, 'bookstore/user_registration.html', {'form': form})
+    
+    response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
 
+    return response
 
+@never_cache
 def sign_in(request):
+    if request.user.is_authenticated:
+        return redirect('index')  # or 'profile'
     if request.method == 'POST':
         form = SigninForm(request.POST)
         if form.is_valid():
@@ -233,7 +247,17 @@ def sign_in(request):
                 form.add_error(None, 'Invalid username or password.')
     else:
         form = SigninForm()
-    return render(request, 'bookstore/sign_in.html', {'form': form})
+    # return render(request, 'bookstore/sign_in.html', {'form': form})
+    response = render(request, 'bookstore/sign_in.html', {
+        'form': form,
+        'next': request.GET.get('next', ''),
+    })
+    # Force no caching headers (for back button prevention)
+    response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+
+    return response
 
 
 def contact(request):
