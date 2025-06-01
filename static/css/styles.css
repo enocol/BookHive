@@ -21,7 +21,10 @@ header {
 
 .main-content {
   margin-top: 100px;
-  min-height: 100vh;
+}
+
+.over-flow {
+  overflow: hidden;
 }
 
 .static-header {

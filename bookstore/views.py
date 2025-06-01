@@ -165,14 +165,13 @@ def about(request):
 @login_required
 def profile(request):
     borrower = Borrower.objects.get(user=request.user)
-    borrowed_books = Book.objects.filter(loan__borrower=borrower).distinct()
-    return_date = Loan.objects.filter(borrower=borrower).values('return_date')
-
+    loan = Loan.objects.select_related('book').filter(borrower=borrower)
+    
     context = {
-        'loans': borrowed_books,
+        
         'user': request.user,
         'borrower': borrower,
-        'return_date': return_date,
+        'loan': loan,
     }
 
     return render(request, "bookstore/profile.html", context)
