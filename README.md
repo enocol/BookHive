@@ -271,39 +271,22 @@ npm install
 
 To deploy BookHive to a live production environment (e.g., Heroku), follow these steps:
 
-#### 1. **Separate Settings for Development and Production**
+#### 1. Make sure in your settings.py file in the project, debug is set to False before commiting and pushing your code
 
-- Create a `settings` package inside your Django project:
+settings.py
+DEBUG=False
 
-  ```bash
-  mkdir project_name/settings
-  mv project_name/settings.py project_name/settings/base.py
-  touch project_name/settings/__init__.py
-  cp project_name/settings/base.py project_name/settings/dev.py
-  cp project_name/settings/base.py project_name/settings/prod.py
-  ```
-
-- Update `manage.py` and `wsgi.py` to use:
-
-  ```python
-  os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project_name.settings.dev")
-  ```
-
-- In production (e.g., on Heroku), set:
-
-  ```bash
-  DJANGO_SETTINGS_MODULE=project_name.settings.prod
-  ```
+````
 
 #### 2. **Environment Variables**
 
-Use `python-decouple` or `os.environ` to manage secrets:
+Use `os.environ` to manage secrets:
 
 ```python
 import os
 SECRET_KEY = os.environ.get("SECRET_KEY")
 DATABASE_URL = os.environ.get("DATABASE_URL")
-```
+````
 
 Set these in Heroku's config vars:
 
