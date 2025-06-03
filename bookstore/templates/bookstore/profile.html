@@ -1,4 +1,6 @@
-{% extends 'base.html'%} {% load static%} {% block content%}
+{% extends 'base.html'%} {% load static%}{% block title %}Profile {{user}}  {% endblock %} {% block content%}
+
+
 
 <div class="container shadow p-3 bg-body rounded h-100 overflow-auto">
   {% if messages %}
@@ -45,6 +47,7 @@
       <div class="col-6">Not provided</div>
       {% endif %}
     </div>
+    <hr />
 
     <div class="borrowed-books over-flow">
       <h2 class="goldenrod">Borrowed Books</h2>
@@ -143,5 +146,5 @@
       {% endif %}
     </div>
   </div>
-  {% endblock%}
 </div>
+{% endblock%}
