@@ -8,20 +8,35 @@ from django.core.paginator import Paginator
 from django.views.decorators.cache import never_cache
 from .models import Book, Loan, Review, Borrower
 from .forms import ReviewForm, Contact, LoanForm, SigninForm, UserRegistration
+from django.db.models import Q
 
 
 def index(request):
     query = request.GET.get('search', '')
-    books = Book.objects.filter(title__icontains=query) if query else Book.objects.all()
-   
+    if query:
+        # Filter books based on the search query
+        books = Book.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+    else:
+        books = Book.objects.all()
+
     # Get featured books
     featured_books = Book.objects.filter(featured=True)
     # Paginate the books
+    # paginator = Paginator(books, 6) 
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
+
+      # Paginate the queryset
     paginator = Paginator(books, 6) 
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    books = paginator.get_page(page_number)  # Now books is the paginated page
+
+
+
+
+
     context = {
-        'page_obj': page_obj,
+        'books': books,
         'featured_books': featured_books,
         'query': query,
         
