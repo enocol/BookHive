@@ -158,6 +158,53 @@ Book Detail Mobile
 | Edit a review | Click "Edit", update the comment in the modal | Updated comment is saved and shown |
 | Delete a review | Click "Delete", confirm action | Comment is removed from the page |
 
+## Other testing:
+
+✅ Functional Testing
+
+| Feature                | Test Description                                               | Status   |
+| ---------------------- | -------------------------------------------------------------- | -------- |
+| User Registration      | Users can register with valid credentials and become borrowers | ✅ Passed |
+| Login/Logout           | Registered users can log in and out securely                   | ✅ Passed |
+| Book Listing           | All books display with title, image, and details               | ✅ Passed |
+| Book Search            | Users can search for books by title or description             | ✅ Passed |
+| Book Borrowing         | Logged-in users can borrow available books                     | ✅ Passed |
+| Book Returning         | Users can return borrowed books and update their status        | ✅ Passed |
+| Review Submission      | Users can add, edit, and delete reviews                        | ✅ Passed |
+| Pagination             | Book listings are paginated after a set limit                  | ✅ Passed |
+| Admin Controls         | Admin users can manage books and borrowers via the admin panel | ✅ Passed |
+
+🎯 Usability Testing
+
+| Area                     | Test Description                                                         | Status   |
+| ------------------------ | ------------------------------------------------------------------------ | -------- |
+| Form Validation          | All forms provide user-friendly error messages for invalid input         | ✅ Passed |
+| Navigation               | Menus and navigation links are intuitive and accessible                  | ✅ Passed |
+| Feedback                 | Success/error messages shown after actions like borrow, return, register | ✅ Passed |
+| Modal Reviews (if used)  | Edit/delete review modals are functional and accessible                  | ✅ Passed |
+| Active Link Highlighting | Navigation bar highlights current page                                   | ✅ Passed |
+
+📱 Responsive Design Testing
+
+| Device/Screen Size      | Test Description                                                              | Status   |
+| ----------------------- | ----------------------------------------------------------------------------- | -------- |
+| Mobile (≤ 768px)        | Content adapts properly, cards stack vertically, nav collapses into hamburger | ✅ Passed |
+| Tablet (768px - 1024px) | Grid adjusts, buttons and forms remain accessible                             | ✅ Passed |
+| Desktop (≥ 1024px)      | All components appear consistently with full layout                           | ✅ Passed |
+| Image Scaling           | Book cover images maintain aspect ratio and fit container                     | ✅ Passed |
+
+
+🗃️ Data Management Testing
+
+| Data Layer                 | Test Description                                                           | Status   |
+| -------------------------- | -------------------------------------------------------------------------- | -------- |
+| Database Migrations        | All models and fields migrate without errors                               | ✅ Passed |
+| Borrower/User Sync         | User creation links to borrower record via OneToOne relationship           | ✅ Passed |
+| Book Availability Tracking | Borrowed books update number of copies available                           | ✅ Passed |
+| Review Linking             | Reviews are correctly associated with users and books                      | ✅ Passed |
+| Edge Cases                 | Handles duplicate registrations, invalid borrow attempts, and missing data | ✅ Passed |
+
+
 ## Automatic test
 
 ### To run automatic test, on the terminal, run the following command:
